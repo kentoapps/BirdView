@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Start画面 -->
+    <string name="start_label">HOW TO PLAY</string>
+    <string name="start_exp">一番多い色をタップ！</string>
+    <string name="start_button">START</string>
+
+    <!-- Game画面 -->
+    <string name="game_time_up">TIME\nUP!</string>
+
+    <!-- Result画面 -->
+    <string name="result_score">スコア</string>
+    <string name="result_point">pt</string>
+    <string name="result_correct">正解</string>
+    <string name="result_incorrect">不正解</string>
+    <string name="result_rate">正答率</string>
+    <string name="result_all_best">全体ベスト更新！</string>
+    <string name="result_my_best">マイベスト更新！</string>
+    <string name="result_ranking">ランキング</string>
+    <string name="result_retry">リトライ</string>
+    <string name="result_back">もどる</string>
+
+    <string name="app_name">Net07_BirdView</string>
+    <string name="main_activity">Bird View</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_log_out">Log out</string>
+    <string name="hello_blank_fragment">Blank Fragment</string>
+
+</resources>
