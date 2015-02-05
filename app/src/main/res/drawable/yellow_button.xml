@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+        <!-- ボタンが押されてない時 -->
+        <item android:state_pressed="false">
+            <!-- ボタンの形状 -->
+            <shape android:shape="rectangle">
+                <!-- ボタンの色 -->
+                <solid android:color="@color/app_yellow"/>
+                <!-- ボタンの角の半径 -->
+                <corners android:radius="@dimen/button_radius"/>
+                <!-- ボタン内の余白 -->
+                <padding android:top="@dimen/button_padding_tb"
+                    android:left="@dimen/button_padding_lr"
+                    android:bottom="@dimen/button_padding_tb"
+                    android:right="@dimen/button_padding_lr"/>
+            </shape>
+        </item>
+        <!-- ボタンが押された時 -->
+        <item android:state_pressed="true">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/app_yellow"/>
+                <corners android:radius="@dimen/button_radius"/>
+                <padding android:top="@dimen/button_padding_tb"
+                    android:left="@dimen/button_padding_lr"
+                    android:bottom="@dimen/button_padding_tb"
+                    android:right="@dimen/button_padding_lr"/>
+            </shape>
+        </item>
+</selector>
