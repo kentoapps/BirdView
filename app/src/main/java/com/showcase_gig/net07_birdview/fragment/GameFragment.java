@@ -138,9 +138,14 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         int buttonNum = 0;
         for(int i = 0; i < blockLength; i++) {
             TableRow tableRow = new TableRow(getActivity());
-            tableLayout.addView(tableRow);
+            tableLayout.addView(tableRow, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1));
+            TableRow.LayoutParams lp = new
+                    TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.MATCH_PARENT, 1);
+            lp.setMargins(10, 10, 10, 10);
             for(int j = 0; j < blockLength; j++) {
-                tableRow.addView(buttonList.get(buttonNum));
+                tableRow.addView(buttonList.get(buttonNum), lp);
                 buttonNum++;
             }
         }

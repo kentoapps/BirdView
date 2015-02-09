@@ -13,9 +13,6 @@ public class GameButton extends Button {
 
     public GameButton(Context context) {
         super(context);
-//        this.setLayoutParams(new LinearLayout.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
     private ColorEnum color;
