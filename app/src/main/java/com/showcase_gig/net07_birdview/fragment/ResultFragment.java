@@ -1,19 +1,25 @@
 package com.showcase_gig.net07_birdview.fragment;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.showcase_gig.net07_birdview.R;
+import com.showcase_gig.net07_birdview.adapter.RankingAdapter;
 import com.showcase_gig.net07_birdview.constant.Const;
 import com.showcase_gig.net07_birdview.intfc.ScoreCallback;
+import com.showcase_gig.net07_birdview.intfc.ScoreCheckCallback;
 import com.showcase_gig.net07_birdview.model.ScoreModel;
 import com.showcase_gig.net07_birdview.view.CircleProgress;
+
+import java.util.List;
 
 public class ResultFragment extends Fragment {
     private static final String TAG = ResultFragment.class.getSimpleName();
@@ -27,6 +33,7 @@ public class ResultFragment extends Fragment {
     private CircleProgress mCircleProgress;
     private int mProgress;
     private double percentage;
+    private int score;
 
     public static ResultFragment newInstance(double param1, double param2) {
         ResultFragment fragment = new ResultFragment();
@@ -61,11 +68,36 @@ public class ResultFragment extends Fragment {
 
         setRate();
 
+        checkRanking();
+
         setRankingButton();
 
         setOtherButtons();
 
         return mView;
+    }
+
+    private void checkRanking() {
+        final TextView resultMsg = (TextView) mView.findViewById(R.id.result_message);
+        scoreModel.checkAllBest(score, new ScoreCheckCallback() {
+            @Override
+            public void response(boolean isBest) {
+                if(isBest) {
+                    resultMsg.setVisibility(View.VISIBLE);
+                    resultMsg.setText(getResources().getString(R.string.result_all_best));
+                } else {
+                    scoreModel.checkMyBest(score, new ScoreCheckCallback() {
+                        @Override
+                        public void response(boolean isBest) {
+                            if(isBest) {
+                                resultMsg.setVisibility(View.VISIBLE);
+                                resultMsg.setText(getResources().getString(R.string.result_my_best));
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     private void setRankingButton() {
@@ -74,8 +106,13 @@ public class ResultFragment extends Fragment {
             public void onClick(View v) {
                 scoreModel.getScore(new ScoreCallback() {
                     @Override
-                    public void response() {
-                        // TODO ダイアログ生成
+                    public void response(List list) {
+                        ListView listView = new ListView(getActivity());
+                        listView.setAdapter(new RankingAdapter(getActivity(), list));
+                        AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                                .setTitle(getResources().getString(R.string.result_ranking))
+                                .setView(listView).create();
+                        dialog.show();
                     }
                 });
             }
@@ -136,7 +173,7 @@ public class ResultFragment extends Fragment {
 
     private void setScore() {
         TextView scoreText = (TextView) mView.findViewById(R.id.result_score_text);
-        int score = (int) (correct * Const.CORRECT_SCORE + incorrect * Const.INCORRECT_SCORE);
+        score = (int) (correct * Const.CORRECT_SCORE + incorrect * Const.INCORRECT_SCORE);
         scoreText.setText(String.valueOf(score));
 
         saveScore(score);

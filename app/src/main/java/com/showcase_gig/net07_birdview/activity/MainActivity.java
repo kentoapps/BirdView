@@ -44,7 +44,11 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_log_out) {
-            // TODO ログアウト処理
+            // ログアウト処理
+            ParseUser.logOut();
+            Intent intent = new Intent(this, LogInActivity.class);
+            startActivity(intent);
+            finish();
             return true;
         }
 

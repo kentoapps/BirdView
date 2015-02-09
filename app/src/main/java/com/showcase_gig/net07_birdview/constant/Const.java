@@ -15,4 +15,7 @@ public class Const {
 
     /** 不正解ポイント */
     public static final int INCORRECT_SCORE = -50;
+
+    /** ランキング取得数 */
+    public static final int RANK_LIMIT = 10;
 }

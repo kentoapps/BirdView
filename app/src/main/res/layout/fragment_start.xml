@@ -22,7 +22,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/sample"/>
+        android:src="@drawable/how_to_image"/>
     <TextView
         android:id="@+id/start_exp"
         android:layout_width="match_parent"

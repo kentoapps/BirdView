@@ -40,6 +40,8 @@ public class GameFragment extends Fragment implements View.OnClickListener {
     private double incorrectCount;
     private TextView timeUpText;
     private TextView count_txt;
+    private CountDownTimer countDownTimer;
+    private Handler handler;
 
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
@@ -170,22 +172,25 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
     private void startTimer() {
         // カウントダウンする
-        new CountDownTimer(Const.PLAY_TIME, 1000){
+        countDownTimer = new CountDownTimer(Const.PLAY_TIME, 1000) {
             // カウントダウン処理
-            public void onTick(long millisUntilFinished){
-                if(millisUntilFinished <= 4000) {
+            public void onTick(long millisUntilFinished) {
+                if (millisUntilFinished <= 4000) {
                     count_txt.setVisibility(View.VISIBLE);
                     count_txt.setText(String.valueOf(millisUntilFinished / 1000));
                 }
             }
+
             // カウントが0になった時の処理
-            public void onFinish(){
+            public void onFinish() {
                 tableLayout.removeAllViews();
                 count_txt.setVisibility(View.INVISIBLE);
                 timeUpText.setVisibility(View.VISIBLE);
-                new Handler().postDelayed(moveToResult, Const.TIME_UP_DISPLAY_TIME);
+                handler = new Handler();
+                handler.postDelayed(moveToResult, Const.TIME_UP_DISPLAY_TIME);
             }
-        }.start();
+        };
+        countDownTimer.start();
     }
 
     private final Runnable moveToResult = new Runnable() {
@@ -210,6 +215,17 @@ public class GameFragment extends Fragment implements View.OnClickListener {
             // 不正解
             incorrectCount++;
             vibrator.vibrate(pattern, -1);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        if(handler != null && moveToResult != null) {
+            handler.removeCallbacks(moveToResult);
         }
     }
 }

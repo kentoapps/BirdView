@@ -115,12 +115,13 @@
 
     <!-- メッセージエリア -->
     <TextView
+        android:id="@+id/result_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/result_all_best"
-        android:textColor="@color/app_red"/>
+        android:textColor="@color/app_red"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/result_ranking_button"
