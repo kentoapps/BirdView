@@ -1,10 +1,158 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16sp"
+    android:background="@color/app_white"
+    android:orientation="vertical"
     tools:context="com.showcase_gig.net07_birdview.fragment.ResultFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <!-- スコアエリア -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/result_score_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/result_score"/>
+        <TextView
+            android:id="@+id/result_score_text"
+            android:layout_below="@+id/result_score_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="2000"
+            android:textSize="56sp"/>
+        <TextView
+            android:id="@+id/result_point"
+            android:layout_below="@+id/result_score_label"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@+id/result_score_text"
+            android:gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result_point"/>
+        </RelativeLayout>
 
-</FrameLayout>
+    <!-- 正答率エリア -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/result_incorrect"
+                android:textColor="@color/app_pink"/>
+            <TextView
+                android:id="@+id/result_incorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="3"
+                android:textSize="24sp"/>
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+            <com.showcase_gig.net07_birdview.view.CircleProgress
+                android:id="@+id/result_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_rate"/>
+                <TextView
+                    android:id="@+id/result_rate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    tools:text="100%"
+                    android:textSize="24sp"/>
+            </LinearLayout>
+            </FrameLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/result_correct"
+                android:textColor="@color/app_blue"/>
+            <TextView
+                android:id="@+id/result_correct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="24"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- メッセージエリア -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/result_all_best"
+        android:textColor="@color/app_red"/>
+
+    <Button
+        android:id="@+id/result_ranking_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="@string/result_ranking"
+        android:textColor="@color/app_white"
+        android:background="@drawable/yellow_button"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/result_retry_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="16dp"
+            android:text="@string/result_retry"
+            android:textColor="@color/app_white"
+            android:background="@drawable/pink_button"/>
+        <Button
+            android:id="@+id/result_back_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:text="@string/result_back"
+            android:textColor="@color/app_white"
+            android:background="@drawable/blue_button"/>
+        </LinearLayout>
+</LinearLayout>

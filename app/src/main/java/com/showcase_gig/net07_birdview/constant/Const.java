@@ -5,11 +5,14 @@ package com.showcase_gig.net07_birdview.constant;
  */
 public class Const {
     /** 1ゲームのプレイ時間（単位：msec） */
-    private static final int PLAY_TIME = 20000;
+    public static final long PLAY_TIME = 20000;
+
+    /** ゲーム終了時のタイムアップ表示から結果画面に移動するまでの時間 */
+    public static final long TIME_UP_DISPLAY_TIME = 2000;
 
     /** 正解ポイント */
-    private static final int CORRECT_SCORE = 100;
+    public static final int CORRECT_SCORE = 100;
 
     /** 不正解ポイント */
-    private static final int INCORRECT_SCORE = -50;
+    public static final int INCORRECT_SCORE = -50;
 }

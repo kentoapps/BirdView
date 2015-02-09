@@ -5,7 +5,7 @@ package com.showcase_gig.net07_birdview.constant;
  */
 public class Db {
     /** Scoreテーブル */
-    private static final String SCORE_TBL = "Score";
-    private static final String SCORE_CLM = "score";
-    private static final String USER_NAME_CLM = "userName";
+    public static final String SCORE_TBL = "Score";
+    public static final String SCORE_CLM = "score";
+    public static final String USER_NAME_CLM = "userName";
 }
