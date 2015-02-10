@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.showcase_gig.net07_birdview" >
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -9,11 +12,14 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
+    <!--
+      IMPORTANT: Change "com.parse.tutorials.pushnotifications.permission.C2D_MESSAGE" in the lines below
+      to match your app's package name + ".permission.C2D_MESSAGE".
+    -->
     <permission android:protectionLevel="signature"
         android:name="com.showcase_gig.net07_birdview.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.showcase_gig.net07_birdview.permission.C2D_MESSAGE" />
 
-    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".BirdViewApplication"
@@ -23,7 +29,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/main_activity" >
+            android:label="@string/main_activity"
+            android:launchMode="singleTask">
             <intent-filter android:label="@string/app_name" >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,6 +60,16 @@
             </intent-filter>
         </receiver>
         <receiver android:name="com.parse.ParsePushBroadcastReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.MyParsePushBroadcastReceiver"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />

@@ -87,7 +87,7 @@ public class ScoreModel {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
-                if(parseObjects != null) {
+                if(parseObjects != null && parseObjects.get(1) != null) {
                     // 2位のやつが自分じゃなければ誰かのトップを奪った
                     String userName = parseObjects.get(1).getString(Db.USER_NAME_CLM);
                     callback.response(userName);
