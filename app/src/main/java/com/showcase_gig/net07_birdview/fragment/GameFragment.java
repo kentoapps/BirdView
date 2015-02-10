@@ -63,7 +63,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
         init();
 
-        setGame(3);
+        setGame(2);
 
         startTimer();
 
@@ -76,7 +76,6 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         correctCount = 0;
         incorrectCount = 0;
         blockLength = 3;
-        blockAmount = blockLength * blockLength;
         roundCount = 0;
         tableLayout = (TableLayout) mView.findViewById(R.id.game_table);
         timeUpText = (TextView) mView.findViewById(R.id.game_time_up);
@@ -87,6 +86,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
     private void setGame(int amount) {
         Log.d(TAG, "amount :" + amount);
         int[] colorAmount = new int[amount];
+        blockAmount = blockLength * blockLength;
 
         // amountで指定された数だけ色の種類を取ってくる
         ArrayList<ColorEnum> colorList = new ArrayList<>();
@@ -210,7 +210,27 @@ public class GameFragment extends Fragment implements View.OnClickListener {
             // 正解
             correctCount++;
             tableLayout.removeAllViews();
-            setGame(3);
+
+            if(correctCount < Const.STAGE_2) {
+                setGame(2);
+            } else if (correctCount < Const.STAGE_3) {
+                setGame(3);
+            } else if (correctCount < Const.STAGE_4) {
+                setGame(4);
+            } else if (correctCount < Const.STAGE_5) {
+                blockLength = 4;
+                setGame(2);
+            } else if (correctCount < Const.STAGE_6) {
+                setGame(3);
+            } else if (correctCount < Const.STAGE_7) {
+                setGame(4);
+            } else if (correctCount < Const.STAGE_8) {
+                blockLength = 5;
+                setGame(3);
+            } else {
+                blockLength = 5;
+                setGame(4);
+            }
         } else {
             // 不正解
             incorrectCount++;

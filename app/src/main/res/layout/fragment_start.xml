@@ -5,6 +5,7 @@
     android:padding="16dp"
     android:orientation="vertical"
     android:background="@color/app_white"
+    android:clickable="true"
     tools:context="com.showcase_gig.net07_birdview.fragment.StartFragment">
 
     <TextView

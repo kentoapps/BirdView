@@ -11,6 +11,7 @@ import com.showcase_gig.net07_birdview.constant.Db;
 import com.showcase_gig.net07_birdview.data.Ranking;
 import com.showcase_gig.net07_birdview.intfc.ScoreCallback;
 import com.showcase_gig.net07_birdview.intfc.ScoreCheckCallback;
+import com.showcase_gig.net07_birdview.intfc.ScorePastBestCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,5 +78,21 @@ public class ScoreModel {
         parseObject.put(Db.SCORE_CLM, score);
         parseObject.put(Db.USER_NAME_CLM, ParseUser.getCurrentUser().getUsername());
         parseObject.saveInBackground();
+    }
+
+    public void checkBeat(final ScorePastBestCallback callback) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(Db.SCORE_TBL);
+        query.orderByDescending(Db.SCORE_CLM);
+        query.setLimit(2);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if(parseObjects != null) {
+                    // 2位のやつが自分じゃなければ誰かのトップを奪った
+                    String userName = parseObjects.get(1).getString(Db.USER_NAME_CLM);
+                    callback.response(userName);
+                }
+            }
+        });
     }
 }

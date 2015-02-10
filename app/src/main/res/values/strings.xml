@@ -18,6 +18,7 @@
     <string name="result_all_best">全体ベスト更新！</string>
     <string name="result_my_best">マイベスト更新！</string>
     <string name="result_ranking">ランキング</string>
+    <string name="result_message">メッセージ</string>
     <string name="result_retry">リトライ</string>
     <string name="result_back">もどる</string>
     <string name="app_name">Net07_BirdView</string>

@@ -4,18 +4,27 @@ package com.showcase_gig.net07_birdview.fragment;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.parse.ParseInstallation;
+import com.parse.ParsePush;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.showcase_gig.net07_birdview.R;
 import com.showcase_gig.net07_birdview.adapter.RankingAdapter;
 import com.showcase_gig.net07_birdview.constant.Const;
 import com.showcase_gig.net07_birdview.intfc.ScoreCallback;
 import com.showcase_gig.net07_birdview.intfc.ScoreCheckCallback;
+import com.showcase_gig.net07_birdview.intfc.ScorePastBestCallback;
 import com.showcase_gig.net07_birdview.model.ScoreModel;
 import com.showcase_gig.net07_birdview.view.CircleProgress;
 
@@ -85,11 +94,50 @@ public class ResultFragment extends Fragment {
                 if(isBest) {
                     resultMsg.setVisibility(View.VISIBLE);
                     resultMsg.setText(getResources().getString(R.string.result_all_best));
+                    // 誰かを抜いたか調べる
+                    scoreModel.checkBeat(new ScorePastBestCallback() {
+                        @Override
+                        public void response(final String userName) {
+                            if(userName.equals(ParseUser.getCurrentUser().getUsername())) {
+                               return;
+                            }
+                            final EditText editText = new EditText(getActivity());
+                            editText.setHint("かかってこいやー！");
+                            editText.setHintTextColor(Color.GRAY);
+                            editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle(userName + "さんを打ち負かした！")
+                                    .setMessage("メッセージを贈ろう！")
+                                    .setView(editText)
+                                    .setPositiveButton("送る", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            String msg = null;
+                                            if (editText.getText().toString().isEmpty()) {
+                                                msg = editText.getHint().toString();
+                                            } else {
+                                                msg = editText.getText().toString();
+                                            }
+                                            // Find users near a given location
+                                            ParseQuery userQuery = ParseUser.getQuery();
+                                            userQuery.whereEqualTo("username", userName);
+
+                                            ParseQuery pushQuery = ParseInstallation.getQuery();
+                                            pushQuery.whereMatchesQuery("user", userQuery);
+
+                                            ParsePush push = new ParsePush();
+                                            push.setQuery(pushQuery); // Set our Installation query
+                                            push.setMessage(msg);
+                                            push.sendInBackground();
+                                        }
+                                    }).create().show();
+                        }
+                    });
                 } else {
                     scoreModel.checkMyBest(score, new ScoreCheckCallback() {
                         @Override
                         public void response(boolean isBest) {
-                            if(isBest) {
+                            if (isBest) {
                                 resultMsg.setVisibility(View.VISIBLE);
                                 resultMsg.setText(getResources().getString(R.string.result_my_best));
                             }

@@ -7,8 +7,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.showcase_gig.net07_birdview.R;
+import com.showcase_gig.net07_birdview.constant.Const;
 import com.showcase_gig.net07_birdview.fragment.StartFragment;
 
 
@@ -26,6 +28,10 @@ public class MainActivity extends ActionBarActivity {
             startActivity(intent);
             return;
         }
+
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put(Const.INSTALLATION_USER, ParseUser.getCurrentUser());
+        installation.saveInBackground();
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_container, StartFragment.newInstance());
@@ -46,6 +52,9 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_log_out) {
             // ログアウト処理
             ParseUser.logOut();
+            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+            installation.remove(Const.INSTALLATION_USER);
+            installation.saveInBackground();
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);
             finish();
