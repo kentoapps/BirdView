@@ -22,13 +22,13 @@ public class Const {
     public static final double COLOR_3_RATE = 1.2;
 
     /** 4色の得点倍率 */
-    public static final double COLOR_4_RATE = 1.5;
+    public static final double COLOR_4_RATE = 1.4;
 
     /** 辺の長さ4の得点倍率 */
     public static final double LENGTH_4_RATE = 1.2;
 
     /** 辺の長さ5の得点倍率 */
-    public static final double LENGTH_5_RATE = 1.5;
+    public static final double LENGTH_5_RATE = 1.4;
 
     /** ランキング取得数 */
     public static final int RANK_LIMIT = 10;

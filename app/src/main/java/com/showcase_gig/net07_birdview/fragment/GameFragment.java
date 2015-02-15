@@ -31,6 +31,8 @@ public class GameFragment extends Fragment implements View.OnClickListener {
     private int blockLength; // ブロックの長さ
     private int blockAmount; // ブロックの数
 
+    private int amount; // 色の数
+
     private ColorEnum correctColor;
     private Vibrator vibrator;
     private long[] pattern;
@@ -67,7 +69,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
         init();
 
-        setGame(2);
+        setGame();
 
         startTimer();
 
@@ -82,13 +84,14 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         score = 0;
         scale = 1;
         blockLength = 3;
+        amount = 2;
         tableLayout = (TableLayout) mView.findViewById(R.id.game_table);
         timeUpText = (TextView) mView.findViewById(R.id.game_time_up);
         vibrator = (Vibrator) getActivity().getSystemService(getActivity().VIBRATOR_SERVICE);
         pattern = new long[]{0, 200};
     }
 
-    private void setGame(int amount) {
+    private void setGame() {
         Log.d(TAG, "amount :" + amount);
         int[] colorAmount = new int[amount];
         blockAmount = blockLength * blockLength;
@@ -214,36 +217,12 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         if (correctColor.equals(colorEnum)) {
             // 正解
             correctCount++;
-            score += Const.CORRECT_SCORE * scale;
+            score += Const.CORRECT_SCORE * getScale();
             tableLayout.removeAllViews();
 
-            if(correctCount < Const.STAGE_2) {
-                setGame(2);
-            } else if (correctCount < Const.STAGE_3) {
-                setGame(3);
-            } else if (correctCount < Const.STAGE_4) {
-                setGame(3, 2);
-            } else if (correctCount < Const.STAGE_5) {
-                setGame(4);
-            } else if (correctCount < Const.STAGE_6) {
-                setGame(4, 3);
-            } else if (correctCount < Const.STAGE_7) {
-                blockLength = 4;
-                setGame(2);
-            } else if (correctCount < Const.STAGE_8) {
-                setGame(3);
-            } else if (correctCount < Const.STAGE_9){
-                setGame(3, 2);
-            } else if (correctCount < Const.STAGE_10){
-                setGame(4, 3);
-            } else if (correctCount < Const.STAGE_11){
-                blockLength = 5;
-                setGame(2);
-            } else if (correctCount < Const.STAGE_12){
-                setGame(3, 2);
-            } else {
-                setGame(4, 3);
-            }
+            setCondition();
+
+            setGame();
         } else {
             // 不正解
             incorrectCount++;
@@ -252,12 +231,85 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void setGame(int priority, int second) {
+    private void setCondition() {
+        if(correctCount < Const.STAGE_2) {
+            setColor(2);
+        } else if (correctCount < Const.STAGE_3) {
+            setColor(3);
+        } else if (correctCount < Const.STAGE_4) {
+            setColor(3, 2);
+        } else if (correctCount < Const.STAGE_5) {
+            setColor(4);
+        } else if (correctCount < Const.STAGE_6) {
+            setColor(4, 3);
+        } else if (correctCount < Const.STAGE_7) {
+            setLength(4);
+            setColor(2);
+        } else if (correctCount < Const.STAGE_8) {
+            setColor(3);
+        } else if (correctCount < Const.STAGE_9){
+            setLength(4, 3);
+            setColor(3, 2);
+        } else if (correctCount < Const.STAGE_10){
+            setLength(4);
+            setColor(4, 3);
+        } else if (correctCount < Const.STAGE_11){
+            setLength(5);
+            setColor(2);
+        } else if (correctCount < Const.STAGE_12){
+            setColor(3, 2);
+        } else {
+            setColor(4, 3);
+        }
+    }
+
+    private double getScale() {
+        double scale = 1;
+        switch(amount) {
+            case 3:
+                scale *=  Const.COLOR_3_RATE;
+                break;
+            case 4:
+                scale *=  Const.COLOR_4_RATE;
+                break;
+        }
+
+        switch(blockLength) {
+            case 4:
+                scale *= Const.LENGTH_4_RATE;
+                break;
+            case 5:
+                scale *= Const.LENGTH_5_RATE;
+                break;
+        }
+        Log.d(TAG, "scale: " + scale);
+        return scale;
+    }
+
+    private void setLength(int blockLength) {
+        this.blockLength = blockLength;
+    }
+
+    private void setLength(int priority, int second) {
         int n = random.nextInt(10);
         if(n < 2) {
-            setGame(second);
+            this.blockLength = second;
         } else {
-            setGame(priority);
+            this.blockLength = priority;
+        }
+    }
+
+
+    private void setColor(int color) {
+        amount = color;
+    }
+
+    private void setColor(int priority, int second) {
+        int n = random.nextInt(10);
+        if(n < 2) {
+            amount = second;
+        } else {
+            amount = priority;
         }
     }
 
