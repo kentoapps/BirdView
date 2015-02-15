@@ -21,7 +21,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.showcase_gig.net07_birdview.R;
 import com.showcase_gig.net07_birdview.adapter.RankingAdapter;
-import com.showcase_gig.net07_birdview.constant.Const;
 import com.showcase_gig.net07_birdview.intfc.ScoreCallback;
 import com.showcase_gig.net07_birdview.intfc.ScoreCheckCallback;
 import com.showcase_gig.net07_birdview.intfc.ScorePastBestCallback;
@@ -34,6 +33,7 @@ public class ResultFragment extends Fragment {
     private static final String TAG = ResultFragment.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
 
     private double correct;
     private double incorrect;
@@ -44,11 +44,12 @@ public class ResultFragment extends Fragment {
     private double percentage;
     private int score;
 
-    public static ResultFragment newInstance(double param1, double param2) {
+    public static ResultFragment newInstance(double param1, double param2, int score) {
         ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
         args.putDouble(ARG_PARAM1, param1);
         args.putDouble(ARG_PARAM2, param2);
+        args.putInt(ARG_PARAM3, score);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,6 +62,7 @@ public class ResultFragment extends Fragment {
         if (getArguments() != null) {
             correct = getArguments().getDouble(ARG_PARAM1);
             incorrect = getArguments().getDouble(ARG_PARAM2);
+            score = getArguments().getInt(ARG_PARAM3);
         }
     }
 
@@ -127,7 +129,7 @@ public class ResultFragment extends Fragment {
 
                                             ParsePush push = new ParsePush();
                                             push.setQuery(pushQuery); // Set our Installation query
-                                            push.setMessage(msg);
+                                            push.setMessage(ParseUser.getCurrentUser().getUsername()+":"+msg);
                                             push.sendInBackground();
                                         }
                                     }).create().show();
@@ -221,7 +223,6 @@ public class ResultFragment extends Fragment {
 
     private void setScore() {
         TextView scoreText = (TextView) mView.findViewById(R.id.result_score_text);
-        score = (int) (correct * Const.CORRECT_SCORE + incorrect * Const.INCORRECT_SCORE);
         scoreText.setText(String.valueOf(score));
 
         saveScore(score);

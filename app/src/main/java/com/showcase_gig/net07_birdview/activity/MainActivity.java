@@ -52,9 +52,11 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_log_out) {
             // ログアウト処理
             ParseUser.logOut();
+
             ParseInstallation installation = ParseInstallation.getCurrentInstallation();
             installation.remove(Const.INSTALLATION_USER);
             installation.saveInBackground();
+
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);
             finish();

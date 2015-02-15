@@ -22,6 +22,7 @@ import com.showcase_gig.net07_birdview.view.GameButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class GameFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = GameFragment.class.getSimpleName();
@@ -30,7 +31,6 @@ public class GameFragment extends Fragment implements View.OnClickListener {
     private int blockLength; // ブロックの長さ
     private int blockAmount; // ブロックの数
 
-    private int roundCount; // ラウンド数
     private ColorEnum correctColor;
     private Vibrator vibrator;
     private long[] pattern;
@@ -38,10 +38,14 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
     private double correctCount;
     private double incorrectCount;
+    private double score;
+    private double scale;
     private TextView timeUpText;
     private TextView count_txt;
     private CountDownTimer countDownTimer;
     private Handler handler;
+
+    private Random random = new Random();
 
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
@@ -75,8 +79,9 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         count_txt = (TextView)mView.findViewById(R.id.game_count);
         correctCount = 0;
         incorrectCount = 0;
+        score = 0;
+        scale = 1;
         blockLength = 3;
-        roundCount = 0;
         tableLayout = (TableLayout) mView.findViewById(R.id.game_table);
         timeUpText = (TextView) mView.findViewById(R.id.game_time_up);
         vibrator = (Vibrator) getActivity().getSystemService(getActivity().VIBRATOR_SERVICE);
@@ -197,7 +202,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         @Override
         public void run() {
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.main_container, ResultFragment.newInstance(correctCount, incorrectCount));
+            fragmentTransaction.replace(R.id.main_container, ResultFragment.newInstance(correctCount, incorrectCount, (int) score));
             fragmentTransaction.commit();
             Log.d(TAG, "correctCount :" + correctCount + " incorrectCount :" + incorrectCount);
         }
@@ -209,6 +214,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         if (correctColor.equals(colorEnum)) {
             // 正解
             correctCount++;
+            score += Const.CORRECT_SCORE * scale;
             tableLayout.removeAllViews();
 
             if(correctCount < Const.STAGE_2) {
@@ -216,25 +222,42 @@ public class GameFragment extends Fragment implements View.OnClickListener {
             } else if (correctCount < Const.STAGE_3) {
                 setGame(3);
             } else if (correctCount < Const.STAGE_4) {
-                setGame(4);
+                setGame(3, 2);
             } else if (correctCount < Const.STAGE_5) {
+                setGame(4);
+            } else if (correctCount < Const.STAGE_6) {
+                setGame(4, 3);
+            } else if (correctCount < Const.STAGE_7) {
                 blockLength = 4;
                 setGame(2);
-            } else if (correctCount < Const.STAGE_6) {
-                setGame(3);
-            } else if (correctCount < Const.STAGE_7) {
-                setGame(4);
             } else if (correctCount < Const.STAGE_8) {
-                blockLength = 5;
                 setGame(3);
-            } else {
+            } else if (correctCount < Const.STAGE_9){
+                setGame(3, 2);
+            } else if (correctCount < Const.STAGE_10){
+                setGame(4, 3);
+            } else if (correctCount < Const.STAGE_11){
                 blockLength = 5;
-                setGame(4);
+                setGame(2);
+            } else if (correctCount < Const.STAGE_12){
+                setGame(3, 2);
+            } else {
+                setGame(4, 3);
             }
         } else {
             // 不正解
             incorrectCount++;
+            score -= Const.INCORRECT_SCORE;
             vibrator.vibrate(pattern, -1);
+        }
+    }
+
+    private void setGame(int priority, int second) {
+        int n = random.nextInt(10);
+        if(n < 2) {
+            setGame(second);
+        } else {
+            setGame(priority);
         }
     }
 
