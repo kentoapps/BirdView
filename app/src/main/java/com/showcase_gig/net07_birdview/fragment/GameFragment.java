@@ -292,7 +292,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
     private void setLength(int priority, int second) {
         int n = random.nextInt(10);
-        if(n < 2) {
+        if(n < 4) {
             this.blockLength = second;
         } else {
             this.blockLength = priority;
@@ -306,7 +306,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
     private void setColor(int priority, int second) {
         int n = random.nextInt(10);
-        if(n < 2) {
+        if(n < 4) {
             amount = second;
         } else {
             amount = priority;
