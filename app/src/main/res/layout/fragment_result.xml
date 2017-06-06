@@ -155,5 +155,5 @@
             android:text="@string/result_back"
             android:textColor="@color/app_white"
             android:background="@drawable/blue_button"/>
-        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
