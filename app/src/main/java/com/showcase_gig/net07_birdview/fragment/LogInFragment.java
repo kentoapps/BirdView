@@ -3,7 +3,6 @@ package com.showcase_gig.net07_birdview.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseUser;
 import com.showcase_gig.net07_birdview.R;
-import com.showcase_gig.net07_birdview.activity.MainActivity;
 
 public class LogInFragment extends Fragment {
 
@@ -63,19 +58,6 @@ public class LogInFragment extends Fragment {
     }
 
     private void doLogIn(String userName, String passWord) {
-        ParseUser.logInInBackground(
-                userName, passWord,
-                new LogInCallback() {
-                    @Override
-                    public void done(ParseUser parseUser, ParseException e) {
-                        if (parseUser != null) {
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(getActivity(), "ログイン失敗", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
     }
 
     private void setSignUpButton() {

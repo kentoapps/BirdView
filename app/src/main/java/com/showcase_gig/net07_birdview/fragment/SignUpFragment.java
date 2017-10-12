@@ -2,7 +2,6 @@ package com.showcase_gig.net07_birdview.fragment;
 
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 import com.showcase_gig.net07_birdview.R;
-import com.showcase_gig.net07_birdview.activity.MainActivity;
 
 public class SignUpFragment extends Fragment {
 
@@ -61,19 +56,19 @@ public class SignUpFragment extends Fragment {
     }
 
     private void doSignUp(String userName, String passWord) {
-        ParseUser user = new ParseUser();
-        user.setUsername(userName);
-        user.setPassword(passWord);
-        user.signUpInBackground(new SignUpCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getActivity(), "新規登録失敗", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        ParseUser user = new ParseUser();
+//        user.setUsername(userName);
+//        user.setPassword(passWord);
+//        user.signUpInBackground(new SignUpCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if(e == null) {
+//                    Intent intent = new Intent(getActivity(), MainActivity.class);
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(getActivity(), "新規登録失敗", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 }
