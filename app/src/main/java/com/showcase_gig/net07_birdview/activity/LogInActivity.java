@@ -2,12 +2,12 @@ package com.showcase_gig.net07_birdview.activity;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.showcase_gig.net07_birdview.R;
 import com.showcase_gig.net07_birdview.fragment.LogInFragment;
 
-public class LogInActivity extends ActionBarActivity {
+public class LogInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -79,7 +79,7 @@ public class ResultFragment extends Fragment {
 
         setRate();
 
-        checkRanking();
+//        checkRanking();
 
         setRankingButton();
 
@@ -225,7 +225,7 @@ public class ResultFragment extends Fragment {
         TextView scoreText = (TextView) mView.findViewById(R.id.result_score_text);
         scoreText.setText(String.valueOf(score));
 
-        saveScore(score);
+//        saveScore(score);
     }
 
     private void saveScore(int score) {
