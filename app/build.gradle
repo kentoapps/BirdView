@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.showcase_gig.net07_birdview"
+        applicationId "com.kentoapps.birdview"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

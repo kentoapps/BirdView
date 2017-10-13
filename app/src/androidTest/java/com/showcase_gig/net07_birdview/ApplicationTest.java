@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview;
+package com.kentoapps.birdview;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.view;
+package com.kentoapps.birdview.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.showcase_gig.net07_birdview.R;
+import com.kentoapps.birdview.R;
 
 
 public class CircleProgress extends View {

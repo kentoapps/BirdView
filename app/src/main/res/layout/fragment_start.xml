@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/app_white"
     android:clickable="true"
-    tools:context="com.showcase_gig.net07_birdview.fragment.StartFragment">
+    tools:context="com.kentoapps.birdview.fragment.StartFragment">
 
     <TextView
         android:id="@+id/start_label"

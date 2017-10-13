@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.constant;
+package com.kentoapps.birdview.constant;
 
 /**
  * Created by kento on 15/02/05.

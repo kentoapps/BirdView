@@ -1,8 +1,8 @@
-package com.showcase_gig.net07_birdview.model;
+package com.kentoapps.birdview.model;
 
-import com.showcase_gig.net07_birdview.intfc.ScoreCallback;
-import com.showcase_gig.net07_birdview.intfc.ScoreCheckCallback;
-import com.showcase_gig.net07_birdview.intfc.ScorePastBestCallback;
+import com.kentoapps.birdview.intfc.ScoreCallback;
+import com.kentoapps.birdview.intfc.ScoreCheckCallback;
+import com.kentoapps.birdview.intfc.ScorePastBestCallback;
 
 /**
  * Created by kento on 15/02/07.

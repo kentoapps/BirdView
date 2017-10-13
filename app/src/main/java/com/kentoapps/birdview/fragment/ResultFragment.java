@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.fragment;
+package com.kentoapps.birdview.fragment;
 
 
 import android.app.AlertDialog;
@@ -15,13 +15,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.showcase_gig.net07_birdview.R;
-import com.showcase_gig.net07_birdview.adapter.RankingAdapter;
-import com.showcase_gig.net07_birdview.intfc.ScoreCallback;
-import com.showcase_gig.net07_birdview.intfc.ScoreCheckCallback;
-import com.showcase_gig.net07_birdview.intfc.ScorePastBestCallback;
-import com.showcase_gig.net07_birdview.model.ScoreModel;
-import com.showcase_gig.net07_birdview.view.CircleProgress;
+import com.kentoapps.birdview.R;
+import com.kentoapps.birdview.adapter.RankingAdapter;
+import com.kentoapps.birdview.intfc.ScoreCallback;
+import com.kentoapps.birdview.intfc.ScoreCheckCallback;
+import com.kentoapps.birdview.intfc.ScorePastBestCallback;
+import com.kentoapps.birdview.model.ScoreModel;
+import com.kentoapps.birdview.view.CircleProgress;
 
 import java.util.List;
 

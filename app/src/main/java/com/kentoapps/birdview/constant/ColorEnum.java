@@ -1,6 +1,6 @@
-package com.showcase_gig.net07_birdview.constant;
+package com.kentoapps.birdview.constant;
 
-import com.showcase_gig.net07_birdview.R;
+import com.kentoapps.birdview.R;
 
 /**
  * Created by kento on 15/02/06.

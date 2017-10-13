@@ -1,9 +1,9 @@
-package com.showcase_gig.net07_birdview.view;
+package com.kentoapps.birdview.view;
 
 import android.content.Context;
 import android.widget.Button;
 
-import com.showcase_gig.net07_birdview.constant.ColorEnum;
+import com.kentoapps.birdview.constant.ColorEnum;
 
 /**
  * Created by kento on 15/02/05.

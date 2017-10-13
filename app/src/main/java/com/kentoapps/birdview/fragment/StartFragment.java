@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.fragment;
+package com.kentoapps.birdview.fragment;
 
 
 import android.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.showcase_gig.net07_birdview.R;
+import com.kentoapps.birdview.R;
 
 public class StartFragment extends Fragment {
     private static final String TAG = StartFragment.class.getSimpleName();

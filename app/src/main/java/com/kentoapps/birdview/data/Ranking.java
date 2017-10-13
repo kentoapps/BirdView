@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.data;
+package com.kentoapps.birdview.data;
 
 /**
  * Created by kento on 15/02/09.

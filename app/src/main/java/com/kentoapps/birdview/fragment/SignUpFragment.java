@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.fragment;
+package com.kentoapps.birdview.fragment;
 
 
 import android.app.Fragment;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.showcase_gig.net07_birdview.R;
+import com.kentoapps.birdview.R;
 
 public class SignUpFragment extends Fragment {
 

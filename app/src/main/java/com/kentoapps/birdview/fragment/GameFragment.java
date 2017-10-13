@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.fragment;
+package com.kentoapps.birdview.fragment;
 
 
 import android.app.Fragment;
@@ -15,10 +15,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.showcase_gig.net07_birdview.R;
-import com.showcase_gig.net07_birdview.constant.ColorEnum;
-import com.showcase_gig.net07_birdview.constant.Const;
-import com.showcase_gig.net07_birdview.view.GameButton;
+import com.kentoapps.birdview.R;
+import com.kentoapps.birdview.constant.ColorEnum;
+import com.kentoapps.birdview.constant.Const;
+import com.kentoapps.birdview.view.GameButton;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.intfc;
+package com.kentoapps.birdview.intfc;
 
 /**
  * Created by kento on 15/02/07.

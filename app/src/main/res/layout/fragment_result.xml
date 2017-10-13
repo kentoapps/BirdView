@@ -6,7 +6,7 @@
     android:background="@color/app_white"
     android:orientation="vertical"
     android:clickable="true"
-    tools:context="com.showcase_gig.net07_birdview.fragment.ResultFragment">
+    tools:context="com.kentoapps.birdview.fragment.ResultFragment">
 
     <!-- スコアエリア -->
     <RelativeLayout
@@ -69,7 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2">
-            <com.showcase_gig.net07_birdview.view.CircleProgress
+            <com.kentoapps.birdview.view.CircleProgress
                 android:id="@+id/result_progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

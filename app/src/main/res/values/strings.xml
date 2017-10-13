@@ -21,7 +21,7 @@
     <string name="result_message">メッセージ</string>
     <string name="result_retry">リトライ</string>
     <string name="result_back">もどる</string>
-    <string name="app_name">Net07_BirdView</string>
+    <string name="app_name">BirdView</string>
     <string name="main_activity">Bird View</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_log_out">Log out</string>

@@ -1,11 +1,11 @@
-package com.showcase_gig.net07_birdview.activity;
+package com.kentoapps.birdview.activity;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.showcase_gig.net07_birdview.R;
-import com.showcase_gig.net07_birdview.fragment.StartFragment;
+import com.kentoapps.birdview.R;
+import com.kentoapps.birdview.fragment.StartFragment;
 
 
 public class MainActivity extends AppCompatActivity {

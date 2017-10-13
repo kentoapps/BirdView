@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_white"
     android:clickable="true"
-    tools:context="com.showcase_gig.net07_birdview.fragment.GameFragment">
+    tools:context="com.kentoapps.birdview.fragment.GameFragment">
 
     <TextView
         android:id="@+id/game_count"

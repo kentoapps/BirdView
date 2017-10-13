@@ -1,4 +1,4 @@
-package com.showcase_gig.net07_birdview.adapter;
+package com.kentoapps.birdview.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.showcase_gig.net07_birdview.R;
-import com.showcase_gig.net07_birdview.data.Ranking;
+import com.kentoapps.birdview.R;
+import com.kentoapps.birdview.data.Ranking;
 
 import java.util.List;
 
